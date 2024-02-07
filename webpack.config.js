@@ -53,7 +53,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/landing.html',
-      filename: 'landing.html',
+      filename: 'index.html',
       title: 'WorkoutWizard',
     }),
     new HtmlWebpackPlugin({
