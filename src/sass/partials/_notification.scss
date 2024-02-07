@@ -1,0 +1,38 @@
+.notificacion {
+  background: #fff;
+  box-shadow: rgba(56, 58, 59, 0.7) 0px 8px 24px;
+  border-radius: 10px;
+  padding: 20px;
+  position: fixed;
+  right: -200px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  transition: 0.3s ease-in all;
+  opacity: 0;
+}
+
+.notificacion--active {
+  right: 40px;
+  opacity: 1;
+}
+
+.notificacion__titulo {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notificacion__thumb {
+  width: 100px;
+  border-radius: 5px;
+}
+
+.notificacion__link {
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}

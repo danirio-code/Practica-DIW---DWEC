@@ -18,10 +18,11 @@ db.onupgradeneeded = (e) => {
 };
 
 // Cargar los productos del array ProductosGym al html con una función autoInvoke
-(function loadProducts() {
-  divProductos.innerHTML = '';
-  productosGym.forEach((product) => {
-    const newProduct = `
+if (divProductos) {
+  (function loadProducts() {
+    divProductos.innerHTML = '';
+    productosGym.forEach((product) => {
+      const newProduct = `
     <div class="col-md-6 mb-4">
     <div class="card h-100" data-product-id="${product.id}">
       <div class="row no-gutters">
@@ -45,9 +46,10 @@ db.onupgradeneeded = (e) => {
     </div>
   </div>
     `;
-    divProductos.innerHTML += newProduct;
-  });
-})();
+      divProductos.innerHTML += newProduct;
+    });
+  })();
+}
 
 // Función para generar dinámicamente la lista de propiedades
 function generatePropertiesList(properties) {
@@ -136,79 +138,83 @@ if (carritoModal) {
 }
 
 // Se añade el evento para añadir un producto a la base de datos usando propagación de eventos
-mainContent.addEventListener('click', (e) => {
-  if (e.target.dataset.action === 'añadir-carrito') {
-    const idProduct = parseInt(e.target.closest('.card').dataset.productId);
-    const productClick = productosGym.find((product) => product.id === idProduct);
-    // Se añade el producto a la base de datos
-    insertProduct(productClick);
+if (mainContent) {
+  mainContent.addEventListener('click', (e) => {
+    if (e.target.dataset.action === 'añadir-carrito') {
+      const idProduct = parseInt(e.target.closest('.card').dataset.productId);
+      const productClick = productosGym.find((product) => product.id === idProduct);
+      // Se añade el producto a la base de datos
+      insertProduct(productClick);
 
-    // Hacemos que cuando se agregue un producto al carrito aparezca la notificación
-    notificacion.querySelector('.notificacion__thumb').src = productClick.img;
-    notificacion.classList.add('notificacion--active');
-    // Despues de 5 segundos ocultamos la notificación
-    setTimeout(() => notificacion.classList.remove('notificacion--active'), 5000);
-  }
-});
+      // Hacemos que cuando se agregue un producto al carrito aparezca la notificación
+      notificacion.querySelector('.notificacion__thumb').src = productClick.img;
+      notificacion.classList.add('notificacion--active');
+      // Despues de 5 segundos ocultamos la notificación
+      setTimeout(() => notificacion.classList.remove('notificacion--active'), 5000);
+    }
+  });
+}
 
 // Se añade el evento para eliminar un producto de la base de datos usando propagación de eventos
-carritoModal.addEventListener('click', (e) => {
-  if (e.target.closest('button')?.dataset.action === 'eliminar-item-carrito') {
-    const idProduct = parseInt(e.target.closest('.cartElement').dataset.productId);
-    // Se elimina el producto de la base de datos
-    deleteProduct(idProduct);
-    loadModal();
-  } else if (e.target.dataset.action === 'comprar-productos') {
-    // Si se clica el botón de comprar sale una animación de progreso y se eliminan todos los registros de la tabla
-    const allProducts = carritoModal.querySelectorAll('.cartElement');
-    if (allProducts.length > 0) {
-      const modalBody = carritoModal.querySelector('.modal-body');
-      modalBody.innerHTML = `
-      <div>
-      <h3>Procediendo con el pago...</h3>
-      </div>
-      <div class="progress" id="progressCompra" role="progressbar" aria-label="progress compra" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped" style="width: 0%">0%</div>
-      </div>`;
-      let currentValue = 0;
-      let progressInterval = setInterval(() => {
-        let progressBar = document.getElementById('progressCompra');
-        // Actualizar el valor de aria-valuenow
-        progressBar.setAttribute('aria-valuenow', currentValue);
-        // Actualizar el ancho de la barra de progreso
-        progressBar.querySelector('.progress-bar').style.width = currentValue + '%';
-        // Mostrar el valor actual en el texto dentro del div con la clase "progress-bar"
-        progressBar.querySelector('.progress-bar').innerText = currentValue + '%';
-        // Incrementar el valor para la próxima actualización
-        currentValue++;
-        // Detener el intervalo cuando alcanza el 100%
-        if (currentValue > 100) {
-          clearInterval(progressInterval);
-        }
-      }, 40);
-      setTimeout(() => {
-        allProducts.forEach((product) => {
-          let productID = parseInt(product.dataset.productId);
-          deleteProduct(productID);
-        });
-        loadModal();
-        setTimeout(() => {
-          modalBody.innerHTML = '<h3>Compra realizada con éxito</h3>';
-        }, 10);
-      }, 5000);
-    }
-  }
-});
-
-// Se añade el evento para cambiar la cantidad de un producto de la base de datos usando propagación de eventos
-carritoModal.addEventListener('input', (e) => {
-  if (e.target.dataset.action === 'modificar-cantidad') {
-    const nuevaCantidad = parseInt(e.target.value);
-    if (Number.isInteger(nuevaCantidad) && nuevaCantidad > 0) {
+if (carritoModal) {
+  carritoModal.addEventListener('click', (e) => {
+    if (e.target.closest('button')?.dataset.action === 'eliminar-item-carrito') {
       const idProduct = parseInt(e.target.closest('.cartElement').dataset.productId);
-      // Se edita la cantidad del producto a la base de datos
-      updateProduct(idProduct, nuevaCantidad);
+      // Se elimina el producto de la base de datos
+      deleteProduct(idProduct);
       loadModal();
+    } else if (e.target.dataset.action === 'comprar-productos') {
+      // Si se clica el botón de comprar sale una animación de progreso y se eliminan todos los registros de la tabla
+      const allProducts = carritoModal.querySelectorAll('.cartElement');
+      if (allProducts.length > 0) {
+        const modalBody = carritoModal.querySelector('.modal-body');
+        modalBody.innerHTML = `
+        <div>
+        <h3>Procediendo con el pago...</h3>
+        </div>
+        <div class="progress" id="progressCompra" role="progressbar" aria-label="progress compra" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped" style="width: 0%">0%</div>
+        </div>`;
+        let currentValue = 0;
+        let progressInterval = setInterval(() => {
+          let progressBar = document.getElementById('progressCompra');
+          // Actualizar el valor de aria-valuenow
+          progressBar.setAttribute('aria-valuenow', currentValue);
+          // Actualizar el ancho de la barra de progreso
+          progressBar.querySelector('.progress-bar').style.width = currentValue + '%';
+          // Mostrar el valor actual en el texto dentro del div con la clase "progress-bar"
+          progressBar.querySelector('.progress-bar').innerText = currentValue + '%';
+          // Incrementar el valor para la próxima actualización
+          currentValue++;
+          // Detener el intervalo cuando alcanza el 100%
+          if (currentValue > 100) {
+            clearInterval(progressInterval);
+          }
+        }, 40);
+        setTimeout(() => {
+          allProducts.forEach((product) => {
+            let productID = parseInt(product.dataset.productId);
+            deleteProduct(productID);
+          });
+          loadModal();
+          setTimeout(() => {
+            modalBody.innerHTML = '<h3>Compra realizada con éxito</h3>';
+          }, 10);
+        }, 5000);
+      }
     }
-  }
-});
+  });
+
+  // Se añade el evento para cambiar la cantidad de un producto de la base de datos usando propagación de eventos
+  carritoModal.addEventListener('input', (e) => {
+    if (e.target.dataset.action === 'modificar-cantidad') {
+      const nuevaCantidad = parseInt(e.target.value);
+      if (Number.isInteger(nuevaCantidad) && nuevaCantidad > 0) {
+        const idProduct = parseInt(e.target.closest('.cartElement').dataset.productId);
+        // Se edita la cantidad del producto a la base de datos
+        updateProduct(idProduct, nuevaCantidad);
+        loadModal();
+      }
+    }
+  });
+}
