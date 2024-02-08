@@ -7,9 +7,17 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand p-1" href="./index.html">
+          <img
+            src="./assets/logos/wlogo-nb-500.png"
+            alt="Logo"
+            width="70"
+            height="70"
+            class="d-inline-block" />
+          Workout Wizard
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -21,33 +29,23 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+            <li class="nav-item ms-2">
+              <a class="nav-link active text-primary" aria-current="page" href="./shop.html"
+                >Tienda <i class="fa-solid fa-sack-dollar"></i
+              ></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./exercises.html"
+                >Ejercicios <i class="fa-solid fa-dumbbell"></i
+              ></a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="#">Rutas <i class="fa-solid fa-shoe-prints"></i></a>
+            </li>
+            <li class="nav-item ms-2">
               <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active iconCarrito"
-                aria-current="page"
+                class="nav-link iconCarrito"
                 data-bs-toggle="modal"
                 data-bs-target="#modalAbrirCarrito"
                 ><i
@@ -56,9 +54,6 @@
                 </i
               ></a>
             </li>
-            <li class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </li>
           </ul>
           <form class="d-flex" role="search">
             <input
@@ -66,7 +61,7 @@
               type="search"
               placeholder="Search"
               aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-primary" type="submit">Search</button>
           </form>
         </div>
       </div>

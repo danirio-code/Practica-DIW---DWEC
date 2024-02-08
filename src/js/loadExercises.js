@@ -1,5 +1,11 @@
+const template = document.querySelector('.exercises');
+const flex = document.querySelector('.exercise-card');
+const searchBar = document.getElementById('search-bar');
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetchFunction();
+  if (template) {
+    fetchFunction();
+  }
 });
 
 async function fetchFunction() {
@@ -21,13 +27,11 @@ async function fetchFunction() {
   }
 }
 
-const pintarCard = (ejercicio) => {
-  console.log(ejercicio);
-  const template = document.querySelector('.float-start');
-  const flex = document.querySelector('.card-group');
+const pintarCard = (ejercicios) => {
+  console.log(ejercicios);
   const fragment = document.createDocumentFragment();
 
-  ejercicio.forEach((ejercicio) => {
+  ejercicios.forEach((ejercicio) => {
     const clone = template.cloneNode(true);
     clone.querySelector('.card-img-top').setAttribute('src', ejercicio.gifUrl);
     clone.querySelector('.card-title').textContent = ejercicio.name;
@@ -37,15 +41,16 @@ const pintarCard = (ejercicio) => {
   });
   template.remove();
 };
-const searchBar = document.getElementById('search-bar');
 
-searchBar.addEventListener('keyup', (e) => {
-  const searchString = e.target.value.toLowerCase();
-  const filteredCharacters = characters.filter((character) => {
-    return (
-      character.name.toLowerCase().includes(searchString) ||
-      character.house.toLowerCase().includes(searchString)
-    );
+if (searchBar) {
+  searchBar.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase();
+    const filteredCharacters = characters.filter((character) => {
+      return (
+        character.name.toLowerCase().includes(searchString) ||
+        character.house.toLowerCase().includes(searchString)
+      );
+    });
+    displayCharacters(filteredCharacters);
   });
-  displayCharacters(filteredCharacters);
-});
+}

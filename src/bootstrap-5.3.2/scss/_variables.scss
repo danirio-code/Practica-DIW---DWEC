@@ -1199,7 +1199,7 @@ $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: null !default;
 $nav-link-color: var(--#{$prefix}link-color) !default;
-$nav-link-hover-color: var(--#{$prefix}link-hover-color) !default;
+$nav-link-hover-color: $primary !default;
 $nav-link-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
 $nav-link-disabled-color: var(--#{$prefix}secondary-color) !default;
@@ -1221,7 +1221,7 @@ $nav-pills-link-active-bg: $component-active-bg !default;
 
 $nav-underline-gap: 1rem !default;
 $nav-underline-border-width: 0.125rem !default;
-$nav-underline-link-active-color: var(--#{$prefix}emphasis-color) !default;
+$nav-underline-link-active-color: $primary !default;
 // scss-docs-end nav-variables
 
 // Navbar
