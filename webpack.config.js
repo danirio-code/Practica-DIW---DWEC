@@ -69,7 +69,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/api_geocalization.html',
-      filename: 'api_geocalization.html',
+      filename: 'location.html',
       title: 'Geocalization',
     }),
   ],

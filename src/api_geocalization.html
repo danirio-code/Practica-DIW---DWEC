@@ -1,35 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geolocalización y Google Maps</title>
 
     <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
+      #map {
+        height: 400px;
+        width: 100%;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
-        id="caminar">
-        Ruta caminando
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1" href="./index.html">
+          <img
+            src="./assets/logos/wlogo-nb-500.png"
+            alt="Logo"
+            width="70"
+            height="70"
+            class="d-inline-block" />
+          Workout Wizard
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./shop.html"
+                >Tienda <i class="fa-solid fa-sack-dollar"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./exercises.html"
+                >Ejercicios <i class="fa-solid fa-dumbbell"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link active text-primary" aria-current="page" href="./location.html"
+                >Rutas <i class="fa-solid fa-shoe-prints"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a
+                class="nav-link iconCarrito"
+                data-bs-toggle="modal"
+                data-bs-target="#modalAbrirCarrito"
+                ><i
+                  class="fa-solid fa-cart-shopping fa-xl"
+                  data-bs-title="El carrito muestra todos los productos añadidos a IndexedDB.">
+                </i
+              ></a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search" />
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="button"
+      aria-pressed="false"
+      autocomplete="off"
+      id="caminar">
+      Ruta caminando
     </button>
-    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
-        id="conduciendo">
-        Ruta en coche
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="button"
+      aria-pressed="false"
+      autocomplete="off"
+      id="conduciendo">
+      Ruta en coche
     </button>
-    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="bus">
-        Ruta en bus
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="button"
+      aria-pressed="false"
+      autocomplete="off"
+      id="bus">
+      Ruta en bus
     </button>
     <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap"></script> -->
     <h1>Geolocalización y Google Maps</h1>
     <div id="map"></div>
-</body>
-
+  </body>
 </html>
