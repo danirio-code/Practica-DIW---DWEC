@@ -1,4 +1,11 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Document</title><style>.card {
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Document</title>
+    <style>
+      .card {
         margin-bottom: 20px;
         width: 500px;
         height: 450px;
@@ -8,4 +15,83 @@
       .btn-primary {
         position: absolute;
         bottom: 20px;
-      }</style><script defer="defer" src="main.js"></script><script defer="defer" src="shop.js"></script><script defer="defer" src="exercises.js"></script></head><body><nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark"><div class="container-fluid"><a class="navbar-brand p-1" href="./index.html"><img src="./assets/logos/wlogo-nb-500.png" alt="Logo" width="70" height="70" class="d-inline-block"/> Workout Wizard </a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline"><li class="nav-item ms-2"><a class="nav-link" href="./shop.html">Tienda <i class="fa-solid fa-sack-dollar"></i></a></li><li class="nav-item ms-2"><a class="nav-link active text-primary" aria-current="page" href="./exercises.html">Ejercicios <i class="fa-solid fa-dumbbell"></i></a></li><li class="nav-item ms-2"><a class="nav-link" href="#">Rutas <i class="fa-solid fa-shoe-prints"></i></a></li><li class="nav-item ms-2"><a class="nav-link iconCarrito" data-bs-toggle="modal" data-bs-target="#modalAbrirCarrito"><i class="fa-solid fa-cart-shopping fa-xl" data-bs-title="El carrito muestra todos los productos añadidos a IndexedDB."></i></a></li></ul><form class="d-flex" role="search"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/> <button class="btn btn-outline-primary" type="submit">Search</button></form></div></div></nav><div class="exercises"></div><div class="float-start m-4 exercise-card"><div class="card" style="width: 18rem"><img class="card-img-top" src="" alt=""/><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p><a href="#" class="btn btn-primary">Button</a></div></div></div></body></html>
+      }
+    </style>
+    <script defer="defer" src="main.js"></script>
+    <script defer="defer" src="shop.js"></script>
+    <script defer="defer" src="exercises.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1" href="./index.html"
+          ><img
+            src="./assets/logos/wlogo-nb-500.png"
+            alt="Logo"
+            width="70"
+            height="70"
+            class="d-inline-block" />
+          Workout Wizard </a
+        ><button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./shop.html"
+                >Tienda <i class="fa-solid fa-sack-dollar"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link active text-primary" aria-current="page" href="./exercises.html"
+                >Ejercicios <i class="fa-solid fa-dumbbell"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="#">Rutas <i class="fa-solid fa-shoe-prints"></i></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a
+                class="nav-link iconCarrito"
+                data-bs-toggle="modal"
+                data-bs-target="#modalAbrirCarrito"
+                ><i
+                  class="fa-solid fa-cart-shopping fa-xl"
+                  data-bs-title="El carrito muestra todos los productos añadidos a IndexedDB."></i
+              ></a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search" />
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="exercises"></div>
+    <div class="float-start m-4 exercise-card">
+      <div class="card" style="width: 18rem">
+        <img class="card-img-top" src="" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card's
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Button</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
