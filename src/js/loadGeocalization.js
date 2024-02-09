@@ -1,23 +1,23 @@
-var script = document.createElement('script');
-script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap';
-script.async = true;
-script.defer = true;
-document.head.appendChild(script);
+// var script = document.createElement('script');
+// script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap';
+// script.async = true;
+// document.head.appendChild(script);
+// Variable global para mostrar la ruta
+
+
 var coordenadas; // Variable global para almacenar las coordenadas
 var mapa;
 var marcador;
-var directionsDisplay; // Variable global para mostrar la ruta
-document.addEventListener('DOMContentLoaded', () => {
-    initMap();
-});
+var directionsDisplay;
+
 // Inicializa y añade el mapa de mi ubicación actual
 async function initMap() {
     var geolocalizacion = navigator.geolocation;
 
     if (geolocalizacion) {
-        geolocalizacion.getCurrentPosition(function (position) {
-            var latitud = position.coords.latitude;
-            var longitud = position.coords.longitude;
+        try {
+            const position = await getPosition();
+            const { latitude: latitud, longitude: longitud } = position.coords;
 
             coordenadas = {
                 lat: latitud,
@@ -35,8 +35,19 @@ async function initMap() {
             });
 
             directionsDisplay = new google.maps.DirectionsRenderer(); // Inicializar el renderer de direcciones
-        });
+        } catch (error) {
+            console.error('Error al obtener la posición:', error);
+        }
     }
+}
+
+function getPosition() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+}
+if (window.location.pathname === '/dist/location.html') {
+    initMap(); // Llama a initMap directamente
 }
 if (document.getElementById('caminar')) {
     document.getElementById('caminar').addEventListener('click', caminar);

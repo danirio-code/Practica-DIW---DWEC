@@ -9,6 +9,9 @@ module.exports = {
     exercises: './src/js/loadExercises.js',
     geocalization: './src/js/loadGeocalization.js',
   },
+  externals: {
+    'google-maps-api': 'google.maps'
+  },
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
