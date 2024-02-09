@@ -74,6 +74,7 @@ module.exports = {
       template: './src/api_geocalization.html',
       filename: 'location.html',
       title: 'Geocalization',
+      inject: 'body',
     }),
   ],
 };
