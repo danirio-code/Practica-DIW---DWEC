@@ -8,6 +8,7 @@ import Tabs from './tabs';
 let iconToSearch;
 let iconOnDiv = false;
 
+// Cuando se pulsa el botón se hace el fetch en el caso de que el icono se haya draggeado al div
 if (btnSearchExercise) {
   btnSearchExercise.addEventListener('click', async (e) => {
     btnSearchExercise.innerHTML = 'Arrastra aquí el icono';
@@ -23,6 +24,7 @@ if (btnSearchExercise) {
   });
 }
 
+// Petición a una API que devuelve ejercicios filtrados por músculo a entrenar
 async function fetchExercisesFromApi(exerciseToSearch) {
   const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${exerciseToSearch}?limit=20`;
   const options = {
@@ -40,6 +42,8 @@ async function fetchExercisesFromApi(exerciseToSearch) {
     console.error(error);
   }
 }
+
+// Muestra un loader (spinner). Se llama mientras se hace el fetch
 function mostrarCargando() {
   let loadersString = '';
   loadersString += `
@@ -107,6 +111,7 @@ function resetSelectedMuscle() {
   }
 }
 
+// Funcíon que crea las cards con los ejercicios del fetch
 function loadExercises(exercisesInfo) {
   let exercisesCardDiv = '<div class="container exercises d-flex flex-column align-items-center">';
   exercisesInfo.forEach((exercise) => {
@@ -165,6 +170,7 @@ function loadExercises(exercisesInfo) {
   exerciseContent.innerHTML = exercisesCardDiv;
 }
 
+// Funciones para el trataiento d strings y de los resultados del fetch
 function capitalizeStrings(string) {
   return string[0].toUpperCase() + string.substring(1);
 }
