@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador Entrenos</title>
+  </head>
+
+  <body class="bg-secondary bg-opacity-10">
+    <!-- NAVBAR -->
+    <nav
+      class="navbar navbar-expand-lg bg-dark border-bottom border-body sticky-top"
+      data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1" href="./index.html">
+          <img
+            src="./assets/logos/wlogo-nb-500.png"
+            alt="Logo"
+            width="70"
+            height="70"
+            class="d-inline-block" />
+          Workout Wizard
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./shop.html"
+                >Tienda <i class="fa-solid fa-sack-dollar"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link active text-primary" aria-current="page" href="./exercises.html"
+                >Ejercicios <i class="fa-solid fa-dumbbell"></i
+              ></a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="nav-link" href="./location.html"
+                >Rutas <i class="fa-solid fa-shoe-prints"></i
+              ></a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search" />
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <main id="mainContentExercises">
+      <div class="d-flex flex-column align-items-center">
+        <div class="muscle_icons m-4 w-75 d-flex flex-row flex-wrap justify-content-between">
+          <img
+            src="./assets/muscle_icons/001-muscle.png"
+            alt="biceps"
+            id="upper_arms"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de BICEPS / TRICEPS" />
+          <img
+            src="./assets/muscle_icons/002-back.png"
+            alt="shoulders"
+            id="shoulders"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de HOMBROS" />
+          <img
+            src="./assets/muscle_icons/003-back-1.png"
+            alt="lower arms"
+            id="lower_arms"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de ANTEBRAZOS" />
+          <img
+            src="./assets/muscle_icons/004-back-2.png"
+            alt="back"
+            id="back"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de ESPALDA" />
+          <img
+            src="./assets/muscle_icons/005-front.png"
+            alt="quadriceps"
+            id="upper_legs"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de CUADRICEPS / ISQUIOS" />
+          <img
+            src="./assets/muscle_icons/006-cardio.png"
+            alt="cardio"
+            id="cardio"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de CARDIO" />
+          <img
+            src="./assets/muscle_icons/007-gym.png"
+            alt="chest"
+            id="chest"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de PECHO" />
+          <img
+            src="./assets/muscle_icons/008-muscles.png"
+            alt="lower legs"
+            id="lower_legs"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de GEMELOS" />
+          <img
+            src="./assets/muscle_icons/009-neck.png"
+            alt="neck"
+            id="neck"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de CUELLO" />
+          <img
+            src="./assets/muscle_icons/010-waist.png"
+            alt="waist"
+            id="waist"
+            draggable="true"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Arrastra para buscar ejercicios de CINTURA" />
+        </div>
+        <div class="d-flex flex-column flex-wrap align-items-center mb-2">
+          <div class="selected_muscle" id="selected_muscle"></div>
+          <div class="mt-3">
+            <button class="btn btn-primary" id="btnBuscarEjercicio">Arrastra aquí el icono</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise-content">
+        <div
+          class="d-flex flex-row flex-wrap justify-content-around align-items-center w-100 info-ejercicios"
+          style="height: 300px">
+          <div
+            class="col-12 col-sm-12 col-md-3 border border-info bg-info bg-opacity-10 border-4 rounded p-3 fs-5 d-flex align-items-center">
+            <p>
+              Usa el buscador para encontrar ejercicios que se adapten a tus necesidades. Arrastra
+              el icono con el grupo muscular al recuadro para filtrar la búsqueda.
+            </p>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-3 border border-success bg-success bg-opacity-10 border-4 rounded p-3 fs-5 d-flex align-items-center">
+            <p>
+              Si necesitas material para poder hacer correctamente los ejercicios, recuerda que
+              probablemete lo puedas en contrar en nuestra <a href="./shop.html">Tienda</a>.
+            </p>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-3 border border-danger bg-danger bg-opacity-10 border-4 rounded p-3 fs-5 d-flex align-items-center">
+            <p>
+              Hacer el entreno por tu cuenta conlleva cierto peligro, si necesitas ayuda con la
+              técnica no dudes en acercarte a <a href="./location.html">Nuestro Gimnasio</a> para
+              que los entrenadores puedan ayudarte.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

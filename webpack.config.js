@@ -10,7 +10,7 @@ module.exports = {
     geocalization: './src/js/loadGeocalization.js',
   },
   externals: {
-    'google-maps-api': 'google.maps'
+    'google-maps-api': 'google.maps',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -66,7 +66,7 @@ module.exports = {
       title: 'Shop',
     }),
     new HtmlWebpackPlugin({
-      template: './src/api_exercises.html',
+      template: './src/exercises_api.html',
       filename: 'exercises.html',
       title: 'Exercises',
     }),

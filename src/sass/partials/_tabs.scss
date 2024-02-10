@@ -1,0 +1,30 @@
+.tabs {
+  &__button {
+    background: #e4e4e4;
+    color: #000;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    // font-family: variables.$font-family;
+    // border-radius: 5px;
+    // padding: 10px 20px;
+
+    &:hover {
+      color: black;
+      border: 1px solid #e2c044;
+    }
+  }
+
+  &__button--active {
+    background: #e2c044;
+  }
+}
+
+.tab {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: none;
+
+  &--active {
+    display: block;
+  }
+}

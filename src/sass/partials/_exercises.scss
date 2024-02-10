@@ -1,0 +1,17 @@
+#selected_muscle {
+  width: 70px;
+  height: 70px;
+  border: 2px solid black;
+}
+
+.selected-muscle__active {
+  box-shadow: 0 0 60px 10px #f90000;
+}
+
+.info-ejercicios div {
+  height: 250px;
+}
+
+.loader {
+  height: 50px;
+}

@@ -1,8 +1,3 @@
-// Probando tooltips con bootstrap
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-const tooltipList = [...tooltipTriggerList].map(
-  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-);
 import { productosGym } from './productosGym.js';
 import { db, insertProduct, deleteProduct, updateProduct } from './indexedDB_CRUD.js';
 const formatearMoneda = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
@@ -24,7 +19,7 @@ if (divProductos) {
     productosGym.forEach((product) => {
       const newProduct = `
     <div class="col-md-6 mb-4">
-    <div class="card h-100" data-product-id="${product.id}">
+    <div class="card h-100 border border-dark" data-product-id="${product.id}">
       <div class="row no-gutters">
         <div class="col-md-4 d-flex align-items-center">
           <img src="${product.img}" class="card-img img-fluid" alt="${product.alt}" />
