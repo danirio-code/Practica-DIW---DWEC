@@ -11,8 +11,8 @@ let iconOnDiv = false;
 if (btnSearchExercise) {
   btnSearchExercise.addEventListener('click', async (e) => {
     btnSearchExercise.innerHTML = 'Arrastra aquí el icono';
-    mostrarCargando();
     if (iconToSearch) {
+      mostrarCargando();
       const exercises = await fetchExercisesFromApi(iconToSearch);
       divEjercicios.innerHTML = '';
       loadExercises(exercises);
