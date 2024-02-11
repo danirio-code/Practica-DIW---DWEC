@@ -76,5 +76,3 @@ La elección de FontAwesome como biblioteca de iconos se fundamenta en su facili
 - Integración con Ecosistema JavaScript: Webpack se integra sin problemas con el ecosistema JavaScript moderno, facilitando el desarrollo avanzado.
 
 Ambas elecciones se respaldan no solo por sus beneficios inherentes, sino también por la familiaridad del equipo con estas tecnologías. En comparación con las alternativas (Material y Gulp), Bootstrap y Webpack demostraron ser la combinación más eficaz, alineándose con nuestras necesidades y el conocimiento previo del equipo.
-
-## Capturas de pantalla que ilustren la aplicación en diferentes dispositivos y resoluciones.
