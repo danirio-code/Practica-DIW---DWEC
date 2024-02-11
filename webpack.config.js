@@ -34,24 +34,6 @@ module.exports = {
           'sass-loader',
         ],
       },
-      // {
-      //   test: /\.html$/,
-      //   use: ['html-loader'], // Recorre todo el html y si encuentra algún recurso como imágenes lo importa al output
-      // },
-      // {
-      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      //   type: 'asset/resource',
-      //   generator: {
-      //     filename: 'assets/[hash][ext]',
-      //   },
-      // },
-      // {
-      //   test: /\.webp$/i,
-      //   type: 'asset/resource',
-      //   generator: {
-      //     filename: 'assets/[hash][ext]',
-      //   },
-      // },
     ],
   },
   plugins: [
