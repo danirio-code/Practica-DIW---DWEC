@@ -28,13 +28,14 @@ npm install
 ```
 
 3. Inicializar el proyecto usando los scripts del package.json
-   1. Compilando el proyecto y iniciando ‘dist/index.html’
+
+- Compilando el proyecto y iniciando ‘dist/index.html’
 
 ```
 npm run build
 ```
 
-2. Ejecutando un servidor en local
+- Ejecutando un servidor en local
 
 ```
 npm run start
