@@ -58,7 +58,7 @@ function getPosition() {
 }
 
 // Verifica si la página actual es location.html y llama a initMap
-if (window.location.pathname === '/dist/location.html') {
+if (window.location.pathname === '/dist/location.html' || window.location.pathname === '/location.html') {
     initMap();
 }
 
