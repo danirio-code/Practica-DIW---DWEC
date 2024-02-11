@@ -1,5 +1,11 @@
 import { productosGym } from './productosGym.js';
-import { db, insertProduct, deleteProduct, updateProduct } from './indexedDB_CRUD.js';
+import {
+  db,
+  insertProduct,
+  deleteProduct,
+  updateProduct,
+  deleteAllProducts,
+} from './indexedDB_CRUD.js';
 const formatearMoneda = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
 const divProductos = document.getElementById('productos');
 const carritoModal = document.getElementById('modalAbrirCarrito');
@@ -185,12 +191,12 @@ if (carritoModal) {
           if (currentValue > 100) {
             clearInterval(progressInterval);
           }
-        }, 40);
+        }, 41);
+        // Se usa un timeout para simular que la compra tarda en realizarse
         setTimeout(() => {
-          allProducts.forEach((product) => {
-            let productID = parseInt(product.dataset.productId);
-            deleteProduct(productID);
-          });
+          // Se eliminan todos los productos de la base de datos después de ahcer la compra
+          deleteAllProducts(allProducts);
+          // Finalmente se carga de nuevo el modal del carrito (con un mensaje de compra realizada)
           loadModal();
           setTimeout(() => {
             modalBody.innerHTML = '<h3>Compra realizada con éxito</h3>';

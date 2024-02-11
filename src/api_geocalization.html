@@ -5,29 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" sizes="32x32" href="./assets/logos/favicon-32x32.png" />
     <link rel="icon" type="image/x-icon" sizes="16x16" href="./assets/logos/favicon-16x16.png" />
-    <title>Geolocalización y Google Maps</title>
-
-    <style>
-      #map {
-        height: 550px;
-        width: 100%;
-      }
-
-      /* css para que no haya scroll horizaontal y el body me ocupe todo la pagina web sin dejar espaccios en blanco
-     */
-      body {
-        overflow-x: hidden;
-        margin: 0;
-        padding: 0;
-      }
-
-      .opciones-mapa button {
-        margin-left: 10px;
-      }
-    </style>
+    <title>Donde estamos</title>
   </head>
 
-  <body class="bg-secondary bg-opacity-10">
+  <body class="bg-secondary bg-opacity-10 overflow-x-hidden">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid">
@@ -64,7 +45,7 @@
             </li>
             <li class="nav-item ms-2">
               <a class="nav-link active text-primary" aria-current="page" href="./location.html"
-                >Rutas <i class="fa-solid fa-shoe-prints"></i
+                >Rutas <i class="fa-solid fa-route"></i
               ></a>
             </li>
           </ul>
@@ -93,7 +74,7 @@
             aria-pressed="false"
             autocomplete="off"
             id="caminar">
-            Caminando
+            Caminando <i class="fa-solid fa-shoe-prints"></i>
           </button>
           <button
             type="button"
@@ -102,7 +83,7 @@
             aria-pressed="false"
             autocomplete="off"
             id="conduciendo">
-            En coche
+            En coche <i class="fa-solid fa-car-side"></i>
           </button>
           <button
             type="button"
@@ -111,7 +92,7 @@
             aria-pressed="false"
             autocomplete="off"
             id="bus">
-            En bus
+            En bus <i class="fa-solid fa-bus"></i>
           </button>
         </div>
       </div>
@@ -144,7 +125,7 @@
             </option>
           </select>
         </div>
-        <h3 class="mt-2">Os esperamos</h3>
+        <h3 class="mt-2">¡Os esperamos!</h3>
       </div>
     </div>
 

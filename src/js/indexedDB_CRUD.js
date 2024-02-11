@@ -14,6 +14,14 @@ export function deleteProduct(productToDelete) {
   transaction.objectStore('carrito').delete(productToDelete);
 }
 
+// DELETE all from IndexedDB
+export function deleteAllProducts(productsToDelete) {
+  productsToDelete.forEach((product) => {
+    let productID = parseInt(product.dataset.productId);
+    deleteProduct(productID);
+  });
+}
+
 // UPDATE in IndexedDB
 export function updateProduct(productId, nuevaCantidad) {
   const transaction = db.result.transaction('carrito', 'readwrite');
