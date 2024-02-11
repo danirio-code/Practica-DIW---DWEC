@@ -1,106 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="./assets/logos/favicon-32x32.png" />
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="./assets/logos/favicon-16x16.png" />
-    <title>Geolocalización y Google Maps</title>
 
-    <style>
-      #map {
-        height: 550px;
-        width: 100%;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="./assets/logos/favicon-32x32.png" />
+  <link rel="icon" type="image/x-icon" sizes="16x16" href="./assets/logos/favicon-16x16.png" />
+  <title>Geolocalización y Google Maps</title>
 
-  <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand p-1" href="./index.html">
-          <img
-            src="./assets/logos/wlogo-nb-500.png"
-            alt="Logo"
-            width="70"
-            height="70"
-            class="d-inline-block" />
-          Workout Wizard
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
-            <li class="nav-item ms-2">
-              <a class="nav-link" href="./shop.html"
-                >Tienda <i class="fa-solid fa-sack-dollar"></i
-              ></a>
-            </li>
-            <li class="nav-item ms-2">
-              <a class="nav-link" href="./exercises.html"
-                >Ejercicios <i class="fa-solid fa-dumbbell"></i
-              ></a>
-            </li>
-            <li class="nav-item ms-2">
-              <a class="nav-link active text-primary" aria-current="page" href="./location.html"
-                >Rutas <i class="fa-solid fa-shoe-prints"></i
-              ></a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search" />
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-          </form>
-        </div>
+  <style>
+    #map {
+      height: 550px;
+      width: 100%;
+    }
+
+    /* css para que no haya scroll horizaontal y el body me ocupe todo la pagina web sin dejar espaccios en blanco
+     */
+    body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand p-1" href="./index.html">
+        <img src="./assets/logos/wlogo-nb-500.png" alt="Logo" width="70" height="70" class="d-inline-block" />
+        Workout Wizard
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+          <li class="nav-item ms-2">
+            <a class="nav-link" href="./shop.html">Tienda <i class="fa-solid fa-sack-dollar"></i></a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="nav-link" href="./exercises.html">Ejercicios <i class="fa-solid fa-dumbbell"></i></a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="nav-link active text-primary" aria-current="page" href="./location.html">Rutas <i
+                class="fa-solid fa-shoe-prints"></i></a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
       </div>
-    </nav>
+    </div>
+  </nav>
+  <!-- <h2>Geolocalización y Google Maps</h2> -->
+  <div class="row">
+    <div class="col">
+      <label>
+        <h5>¿Cómo llegar a nuestra gimansión? Pulsa la opción que prefieras</h5>
+      </label>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+        id="caminar">Caminando</button>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+        id="conduciendo">En coche</button>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+        id="bus">En bus</button>
+    </div>
+    <div class="col">
+      <label for="rutaSelect">
+        <h5>Proximas rutas</h5>
+      </label>
+      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="rutaSelect">
+        <option selected>
+          <h6>Elige una ruta</h6>
+        </option>
+        <option value="tramuntana">
+          <h6>Ruta de running por el Castillo de Bellver: 3 de marzo a las 18:00 horas. </h6>
+        </option>
+        <option value="campastilla">
+          <h6>Ruta de ciclismo en Can Pastilla: 10 de marzo a las 18:00 horas.</h6>
+        </option>
+      </select>
+    </div>
+  </div>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap"
+    loading="async"></script>
+  <div id="map"></div>
+</body>
 
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="button"
-      aria-pressed="false"
-      autocomplete="off"
-      id="caminar">
-      Ruta caminando
-    </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="button"
-      aria-pressed="false"
-      autocomplete="off"
-      id="conduciendo">
-      Ruta en coche
-    </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="button"
-      aria-pressed="false"
-      autocomplete="off"
-      id="bus">
-      Ruta en bus
-    </button>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap"
-      loading="async"></script>
-    <h1>Geolocalización y Google Maps</h1>
-    <div id="map"></div>
-  </body>
 </html>

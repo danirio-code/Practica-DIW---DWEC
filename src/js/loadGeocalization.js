@@ -20,17 +20,22 @@ async function initMap() {
                 lat: latitud,
                 lng: longitud
             };
+            coordenadasGimnasio = { lat: 39.587246, lng: 2.628882 };
 
             // Crea el mapa centrado en las coordenadas del usuario
             mapa = new google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
-                center: coordenadas
+                center: coordenadasGimnasio
             });
 
             // Coloca un marcador en la ubicación del usuario
             marcador = new google.maps.Marker({
-                position: coordenadas,
-                map: mapa
+                position: coordenadasGimnasio,
+                map: mapa,
+                icon: {
+                    url: './assets/logos/wizardLogo-nb-500.png',
+                    scaledSize: new google.maps.Size(100, 100)
+                }
             });
 
             // Inicializa el renderer de direcciones
@@ -77,13 +82,10 @@ function obtenerRuta(modoViaje) {
     // Borra el marcador anterior si existe
     marcador.setMap(null);
 
-    // Dirección de destino
-    var destino = 'CIFP Francesc de Borja Moll Carrer de Caracas, 6, Illes Balears, Spain';
-
     // Configuración de la solicitud de ruta
     var objConfigDS = {
         origin: coordenadas,
-        destination: destino,
+        destination: coordenadasGimnasio,
         travelMode: modoViaje,
     };
 
@@ -115,14 +117,7 @@ function bus() {
 function caminar() {
     obtenerRuta(google.maps.TravelMode.WALKING);
 }
-// Coordenadas del circuito de ejemplo en Palma
-const circuitoPalma = [
-    { lat: 39.5737, lng: 2.6502 }, // Punto inicial
-    { lat: 39.5705, lng: 2.6497 }, // Punto intermedio
-    { lat: 39.5723, lng: 2.6421 }, // Punto intermedio
-    { lat: 39.5749, lng: 2.6426 }, // Punto intermedio
-    { lat: 39.5737, lng: 2.6502 }  // Punto final
-];
+
 // Coordenadas del circuito de ejemplo en la Serra de Tramuntana
 const rutaTramuntana = [
     { lat: 39.562075, lng: 2.624678 },
@@ -202,7 +197,7 @@ function agregarCircuito() {
         strokeOpacity: 1.0,
         strokeWeight: 2
     });
-    const iconSize = new google.maps.Size(40, 40); // Dimensiones deseadas del icono
+    // Dimensiones deseadas del icono
     const iconScaledSize = new google.maps.Size(40, 40);
     //marcador de inicio
     const marker = new google.maps.Marker({
@@ -259,3 +254,29 @@ function agregarCircuito2() {
     });
     circuitoPolyline.setMap(mapa);
 }
+
+// Función para centrar el mapa en una ubicación específica
+function centrarMapaEnUbicacion(ubicacion) {
+    mapa.setCenter(ubicacion);
+}
+
+// Agrega event listener al select
+const select = document.getElementById('rutaSelect');
+select.addEventListener('change', function () {
+    const selectedValue = select.value;
+    if (selectedValue === 'tramuntana') {
+        // Muestra la ruta Tramuntana
+        agregarCircuito();
+        // Centra el mapa en la ubicación inicial de la ruta Tramuntana
+        centrarMapaEnUbicacion(rutaTramuntana[0]);
+        //zoom diferente
+        mapa.setZoom(15.2);
+    } else if (selectedValue === 'campastilla') {
+        // Muestra la ruta Campastilla
+        agregarCircuito2();
+        // Centra el mapa en la ubicación inicial de la ruta Campastilla
+        centrarMapaEnUbicacion(rutaCampastilla[18]);
+        //zoom diferente
+        mapa.setZoom(14);
+    }
+});
