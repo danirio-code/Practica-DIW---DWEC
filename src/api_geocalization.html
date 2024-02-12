@@ -1,185 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="./assets/logos/favicon-32x32.png" />
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="./assets/logos/favicon-16x16.png" />
-    <title>Geolocalización y Google Maps</title>
 
-    <style>
-      #map {
-        height: 550px;
-        width: 100%;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="./assets/logos/favicon-32x32.png" />
+  <link rel="icon" type="image/x-icon" sizes="16x16" href="./assets/logos/favicon-16x16.png" />
+  <title>Geolocalización y Google Maps</title>
 
-      /* css para que no haya scroll horizaontal y el body me ocupe todo la pagina web sin dejar espaccios en blanco
+  <style>
+    #map {
+      height: 550px;
+      width: 100%;
+    }
+
+    /* css para que no haya scroll horizaontal y el body me ocupe todo la pagina web sin dejar espaccios en blanco
      */
-      body {
-        overflow-x: hidden;
-        margin: 0;
-        padding: 0;
-      }
+    body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
 
-      .opciones-mapa button {
-        margin-left: 10px;
-      }
-    </style>
-  </head>
+    .opciones-mapa button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
 
-  <body class="bg-secondary bg-opacity-10">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand p-1" href="./index.html">
-          <img
-            src="./assets/logos/wlogo-nb-500.png"
-            alt="Logo"
-            width="70"
-            height="70"
-            class="d-inline-block" />
-          Workout Wizard
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+<body class="bg-secondary bg-opacity-10">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand p-1" href="./index.html">
+        <img src="./assets/logos/wlogo-nb-500.png" alt="Logo" width="70" height="70" class="d-inline-block" />
+        Workout Wizard
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
+          <li class="nav-item ms-2">
+            <a class="nav-link" href="./shop.html">Tienda <i class="fa-solid fa-sack-dollar"></i></a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="nav-link" href="./exercises.html">Ejercicios <i class="fa-solid fa-dumbbell"></i></a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="nav-link active text-primary" aria-current="page" href="./location.html">Rutas <i
+                class="fa-solid fa-shoe-prints"></i></a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <h2>Geolocalización y Google Maps</h2> -->
+  <div class="container mt-4">
+    <div class="opciones-mapa d-flex flex-column flex-wrap align-items-center mb-4">
+      <h4>¿Cómo llegar a nuestro gimansio?</h4>
+      <p>Se te mostrara la mejor ruta desde tu ubicación actual</p>
+      <div>
+        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+          id="caminar">
+          Caminando
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
-            <li class="nav-item ms-2">
-              <a class="nav-link" href="./shop.html"
-                >Tienda <i class="fa-solid fa-sack-dollar"></i
-              ></a>
-            </li>
-            <li class="nav-item ms-2">
-              <a class="nav-link" href="./exercises.html"
-                >Ejercicios <i class="fa-solid fa-dumbbell"></i
-              ></a>
-            </li>
-            <li class="nav-item ms-2">
-              <a class="nav-link active text-primary" aria-current="page" href="./location.html"
-                >Rutas <i class="fa-solid fa-shoe-prints"></i
-              ></a>
-            </li>
+        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+          id="conduciendo">
+          En coche
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+          id="bus">
+          En bus
+        </button>
+      </div>
+    </div>
+    <div id="map" class="border border-dark"></div>
+  </div>
+  <div class="container mt-4">
+    <div class="d-flex flex-column flex-wrap align-items-center">
+      <div class="rutas mt-4">
+        <label for="rutaSelect">
+          <h4>En este gimnasio nos gusta hacer piña</h4>
+          <p>
+            Organizamos excursiones, rutas andando o en bici para todo aquel que se quiera
+            apuntar, <b>GRATIS</b>
+          </p>
+          <p>Héchale un vistazo a las próximas rutas por si te quieres unir.</p>
+          <h5>Proximas rutas</h5>
+        </label>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="rutaSelect">
+          <option selected>
+            <h6>Elige una ruta</h6>
+          </option>
+          <option value="tramuntana">
+            <h6>Ruta de running por el Castillo de Bellver: 3 de marzo a las 18:00 horas.</h6>
+          </option>
+          <option value="campastilla">
+            <h6>Ruta de ciclismo en Can Pastilla: 10 de marzo a las 18:00 horas.</h6>
+          </option>
+        </select>
+      </div>
+      <h3 class="mt-2">Os esperamos</h3>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>Enlaces Relevantes</h4>
+          <ul class="list-unstyled">
+            <li><a href="./shop.html">Tienda</a></li>
+            <li><a href="./exercises.html">Entrenos para tí</a></li>
+            <li><a href="./#">Sobre nosotros</a></li>
+            <li><a href="./location.html">Donde encontrarnos</a></li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search" />
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-          </form>
+        </div>
+        <div class="col-lg-5">
+          <h4>Desarrollado y diseñado por:</h4>
+          <p>Daniel Río Arizti</p>
+          <p>Raúl Velásquez Vega</p>
+        </div>
+        <div class="col-lg-3">
+          <h4>Contacto</h4>
+          <p>drioarizti@cifpfbmoll.eu</p>
+          <p>rvelasquezvega@cifpfbmoll.eu</p>
         </div>
       </div>
-    </nav>
-
-    <!-- <h2>Geolocalización y Google Maps</h2> -->
-    <div class="container mt-4">
-      <div class="opciones-mapa d-flex flex-column flex-wrap align-items-center mb-4">
-        <h4>¿Cómo llegar a nuestro gimansio?</h4>
-        <p>Se te mostrara la mejor ruta desde tu ubicación actual</p>
-        <div>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="button"
-            aria-pressed="false"
-            autocomplete="off"
-            id="caminar">
-            Caminando
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="button"
-            aria-pressed="false"
-            autocomplete="off"
-            id="conduciendo">
-            En coche
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="button"
-            aria-pressed="false"
-            autocomplete="off"
-            id="bus">
-            En bus
-          </button>
-        </div>
-      </div>
-      <div id="map" class="border border-dark"></div>
+      <hr class="my-4" />
+      <p class="text-center">&copy; 2024 Workout Wizard. Todos los derechos reservados.</p>
     </div>
-    <div class="container mt-4">
-      <div class="d-flex flex-column flex-wrap align-items-center">
-        <div class="rutas mt-4">
-          <label for="rutaSelect">
-            <h4>En este gimnasio nos gusta hacer piña</h4>
-            <p>
-              Organizamos excursiones, rutas andando o en bici para todo aquel que se quiera
-              apuntar, <b>GRATIS</b>
-            </p>
-            <p>Héchale un vistazo a las próximas rutas por si te quieres unir.</p>
-            <h5>Proximas rutas</h5>
-          </label>
-          <select
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
-            id="rutaSelect">
-            <option selected>
-              <h6>Elige una ruta</h6>
-            </option>
-            <option value="tramuntana">
-              <h6>Ruta de running por el Castillo de Bellver: 3 de marzo a las 18:00 horas.</h6>
-            </option>
-            <option value="campastilla">
-              <h6>Ruta de ciclismo en Can Pastilla: 10 de marzo a las 18:00 horas.</h6>
-            </option>
-          </select>
-        </div>
-        <h3 class="mt-2">Os esperamos</h3>
-      </div>
-    </div>
+  </footer>
 
-    <footer class="bg-dark text-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h4>Enlaces Relevantes</h4>
-            <ul class="list-unstyled">
-              <li><a href="./shop.html">Tienda</a></li>
-              <li><a href="./exercises.html">Entrenos para tí</a></li>
-              <li><a href="./#">Sobre nosotros</a></li>
-              <li><a href="./location.html">Donde encontrarnos</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-5">
-            <h4>Desarrollado y diseñado por:</h4>
-            <p>Daniel Río Arizti</p>
-            <p>Raúl Velásquez Vega</p>
-          </div>
-          <div class="col-lg-3">
-            <h4>Contacto</h4>
-            <p>drioarizti@cifpfbmoll.eu</p>
-            <p>rvelasquezvega@cifpfbmoll.eu</p>
-          </div>
-        </div>
-        <hr class="my-4" />
-        <p class="text-center">&copy; 2024 Workout Wizard. Todos los derechos reservados.</p>
-      </div>
-    </footer>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw"
+    loading="async"></script>
+</body>
 
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap"
-      loading="async"></script>
-  </body>
 </html>
